@@ -1,0 +1,136 @@
+#!/usr/bin/env python
+# coding: utf-8
+
+# In[1]:
+
+
+import numpy
+import pandas
+from IPython.display import clear_output
+from IPython.core.display import HTML
+import os
+
+
+# In[2]:
+
+
+m = 0
+turn = 0
+moveList = [0]
+
+def askMove():
+    global m
+    m = int(input('In which box would you play your move?'))
+    moveList.append(m)
+    m = 0
+    clear_output()
+
+
+# In[3]:
+
+
+def move(id):
+    global turn
+    if id == m :
+        turn+=1
+        if turn%2 == 1:
+            return ('X')
+            
+        elif turn%2 == 0:  
+            return ('O')
+            
+    elif (id in moveList) :
+        if (moveList.index(id))%2 == 1:
+            return ('X')
+        else:
+            return ('O')
+    else:
+        return (' ')
+        
+
+
+# In[4]:
+
+
+
+def printBoard():
+    
+    print(' ' + move(1) + ' | ' + move(2) + ' | ' + move(3) + ' ')
+    print('-----------')
+    print(' ' + move(4) + ' | ' + move(5) + ' | ' + move(6) + ' ')
+    print('-----------')
+    print(' ' + move(7) + ' | ' + move(8) + ' | ' + move(9) + ' ')
+
+
+
+
+playerDict = {'X': 'Player 1',
+             'O': 'Player 2'}
+
+             
+        
+               
+       
+def check():
+    if(move(1) == move(2) == move(3) != ' '):
+        return print('The game is won by : ' + playerDict[move(1)])
+    elif(move(4) == move(5) == move(6) != ' '):
+        return print('The game is won by : ' + playerDict[move(4)])
+    elif(move(7) == move(8) == move(9) != ' '):
+        return print('The game is won by : ' + playerDict[move(9)])
+    elif(move(1) == move(4) == move(7) != ' '):
+        return print('The game is won by : ' + playerDict[move(7)])
+    elif(move(2) == move(5) == move(8) != ' '):
+        return print('The game is won by : ' + playerDict[move(8)])
+    elif(move(3) == move(6) == move(9) != ' '):
+        return print('The game is won by : ' + playerDict[move(9)])
+    elif(move(1) == move(5) == move(9) != ' '):
+        return print('The game is won by : ' + playerDict[move(9)])
+    elif(move(3) == move(5) == move(7) != ' '):
+        return print('The game is won by : ' + playerDict[move(7)])  
+    else:
+        return True
+
+
+
+   
+    
+        
+
+
+# In[ ]:
+
+
+game = True
+
+def startGame(game):
+    while game == True :
+        askMove()
+        printBoard()
+        game = check()
+    n = input('Start New Game? Press any key')
+    if(n):
+        os._exit(00)
+
+
+ 
+
+a = input('Press any key and hit Enter to Start Game')
+if(a):
+    startGame(game)
+        
+
+
+
+
+# In[ ]:
+
+
+
+
+
+# In[ ]:
+
+
+
+
